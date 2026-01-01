@@ -1,3 +1,5 @@
+Access here: https://shubham51225.github.io/gre-vocab/
+
 # GRE Vocabulary
 
 A free, minimalist vocabulary learning app designed for GRE preparation. Built as a single HTML file with no dependencies, no accounts, and no subscriptions. Just download and start learning.
@@ -40,7 +42,3 @@ The vocabulary database was compiled from several trusted GRE preparation resour
 
 This is a single-file application, so contributing is straightforward. Fork the repository, edit `index.html`, and submit a pull request. The entire app — HTML, CSS, JavaScript, and all 5,867 vocabulary entries — lives in that one file.
 
-
----
-
-*Study smarter, not harder.*
