@@ -1,44 +1,94 @@
 Access here: https://shubham51225.github.io/gre-vocab/
 
-# GRE Vocabulary
+# GRE Vocabulary App
 
-A free, minimalist vocabulary learning app designed for GRE preparation. Built as a single HTML file with no dependencies, no accounts, and no subscriptions. Just download and start learning.
+A progressive web app for mastering GRE vocabulary using an intelligent adaptive algorithm that automatically tracks your performance and prioritizes words you struggle with—no manual self-rating required.
 
-## About
+## The Problem with Traditional Flashcards
 
-Preparing for the GRE can be overwhelming, especially when you're staring at thousands of vocabulary words wondering where to start. This app was built to solve that problem. It combines 5,867 carefully curated words from popular GRE prep sources like Manhattan Prep, Barron's, and Princeton Review into one clean, distraction-free interface.
+Most spaced repetition apps ask you to rate how well you know a word after seeing it. The problem? When you're looking at a word and its definition, it *always* feels familiar. You think "yeah, I know this one" and rate it as easy—only to blank on it during the actual test. This self-assessment bias undermines the entire learning process.
 
-The learning system is based on the SM-2 spaced repetition algorithm — the same one that powers Anki. Instead of reviewing words randomly, the app tracks how well you know each word and schedules reviews at optimal intervals. Words you struggle with appear more frequently, while words you've mastered fade into longer review cycles. This means you spend your time where it matters most.
+## Adaptive Retention Algorithm (ARA)
 
-What makes this app a bit different is the context it provides. Each word comes with its etymology and Latin/Greek roots, helping you understand *why* words mean what they mean. There are also economics-focused example sentences (originally built for an agricultural economist, but useful for anyone who thinks in terms of markets, incentives, and policy) alongside general examples. Memory hooks and mnemonics are included to help tricky words stick.
+This app takes a different approach. Instead of asking you to judge your own knowledge, it watches how you actually perform in quizzes and automatically adjusts which words need more attention.
 
-## Features
+Every word has a "heat" score from 0 to 100. Hot words are ones you're struggling with. The algorithm calculates heat based on your real quiz performance:
 
-The app offers multiple ways to learn depending on your mood and how much time you have. The classic flashcard mode lets you flip through cards at your own pace, rating each word from "Again" to "Easy" — the app calculates your next review interval automatically. If you prefer active recall, there's a typing mode where you type the word from its definition, and a matching game that pairs words with their meanings.
+**Heat increases when:**
+- You answer incorrectly (+15 heat per wrong answer)
+- You recently got it wrong and haven't recovered
+- Your overall accuracy for that word is low
 
-For those who like a challenge, timed quizzes let you race against the clock in 60-second sprints or 3-minute sessions. After any quiz, you can immediately review the words you missed, turning mistakes into focused practice.
+**Heat decreases when:**
+- You answer correctly (builds a streak)
+- You maintain high accuracy over multiple attempts
+- Time passes without mistakes
 
-Daily goals keep you accountable. Set targets for new words learned and reviews completed, then watch your streak grow as you show up each day. The progress dashboard shows your mastery breakdown at a glance — how many words you've mastered, how many you're still learning, and how many remain untouched.
+Words with heat above 30 are considered "hot" and appear in the dedicated Hot Words review section. Once you achieve mastery—5 consecutive correct answers with 80%+ overall accuracy across at least 3 attempts—the word cools down and exits the hot list.
 
-Customization options include dark mode for late-night study sessions, adjustable text sizes for comfortable reading, and toggles to show or hide economics examples and memory hooks based on your preferences.
+## How to Use
 
-## How It Works
+The app follows a simple daily workflow:
 
-When you first open the app, you'll see your dashboard with daily goals and session options. Tap "Learn New Words" to start with fresh vocabulary, or "Review Due Words" to practice words that are ready for review based on the spaced repetition schedule.
+**Learn New Words** takes you through vocabulary you haven't seen yet. Words are randomly shuffled each day, but the shuffle stays consistent throughout the day so you can take breaks and pick up where you left off. Tap the card to flip it, read the definition and examples, then tap Next to mark it as learned and move on.
 
-Each flashcard shows the word on the front along with its roots and etymology. Tap to flip and reveal the definition, example sentences, and memory hook. Then rate how well you knew it: Again, Hard, Good, or Easy. The app uses your rating to schedule the next review — words marked "Again" come back in minutes, while "Easy" words might not appear for weeks.
+**Take Quiz** tests you on words you've already learned. Questions alternate between showing a definition (pick the word) and showing a word (pick the definition). Your answers are automatically tracked—no need to self-assess. The app remembers what you got right and wrong.
 
-You can also swipe on mobile: swipe left for "Again" and swipe right for "Easy" for a faster review flow.
+**Review Hot Words** appears when you have struggling words. This quiz focuses specifically on words where your performance has been weak. Keep reviewing until words cool down through consistent correct answers.
 
-The Browse section lets you search through all 5,867 words, filter by status (new, learning, mastered, or due), and tap any word to see its full details. From there, you can add it directly to your study session.
+## Understanding the Interface
 
-Your progress is saved automatically in your browser's local storage. Use the export feature to back up your data as a JSON file, or import it on another device to continue where you left off.
+The home screen shows three key numbers: how many words you've learned, how many "hot" words need attention, and your current streak. The progress ring visualizes your overall completion percentage.
 
-## Word Sources
+In the Browse section, you can search for any word and filter by status. The heat indicator on each word shows its current difficulty level for you personally. Tapping a word reveals full details including your performance statistics.
 
-The vocabulary database was compiled from several trusted GRE preparation resources: Barron's GRE Word List (~3,900 words), Manhattan Prep's 1000 GRE Words (~950 words), Princeton Review's Hit Parade and Word Smart collections (~500 words), and additional curated lists (~500 words). Duplicates were removed and definitions were cleaned for consistency.
+The Stats view shows your weekly activity calendar and lists your hottest words ranked by how much they need review.
+
+The app works with any number of words. Economics examples are optional and can be toggled off in settings if you prefer general-purpose vocabulary study.
+
+## Themes
+
+Three visual themes are available in Settings:
+
+**Light** provides a clean, minimal interface with maximum readability for daytime use.
+
+**Dark** offers a true black background optimized for OLED screens and nighttime study sessions.
+
+**Shubham's Theme** is a cyberpunk-inspired aesthetic featuring deep purple backgrounds, neon pink and cyan accents, and ambient glow effects. This theme is set as the default.
+
+## Technical Details
+
+The app is a single HTML file with no external dependencies. It works offline once loaded and stores all progress in your browser's localStorage. Data persists across sessions but is tied to your browser—clearing browser data will reset your progress.
+
+You can export your progress as a JSON file from Settings at any time. This backup includes all learned words, performance data, and settings. Import this file on another device or after clearing your browser to restore your progress.
+
+## Algorithm Details
+
+The heat calculation considers multiple factors:
+
+```
+Base heat: 50 (neutral starting point)
++ Wrong answers × 15
+- Correct streak × 10
+- Overall accuracy × 30 (scaled)
++ Recent mistake bonus: 20 (if wrong within 24 hours)
++ Dormant struggle bonus: 10 (if >72 hours and more wrongs than rights)
+```
+
+Heat is clamped between 0 and 100. Words reaching mastery (5-streak, 80% accuracy, 3+ attempts) have their heat reset to 0.
+
+The daily shuffle uses a seeded random algorithm based on the current date. This means if you study at 9am and return at 9pm, you'll continue from where you stopped rather than seeing a completely new random order. The shuffle resets at midnight.
+
+## Privacy
+
+All data stays on your device. The app makes no network requests after initial load and collects no analytics. Your vocabulary progress exists only in your browser's localStorage.
+
+---
+
+Built for focused GRE preparation. No accounts, no subscriptions, no distractions—just you and the words.
 
 ## Contributing
 
 This is a single-file application, so contributing is straightforward. Fork the repository, edit `index.html`, and submit a pull request. The entire app — HTML, CSS, JavaScript, and all 5,867 vocabulary entries — lives in that one file.
+
 
