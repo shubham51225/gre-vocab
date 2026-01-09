@@ -54,11 +54,11 @@ Three visual themes are available in Settings:
 
 **Dark** offers a true black background optimized for OLED screens and nighttime study sessions.
 
-**Shubham's Theme** is a cyberpunk-inspired aesthetic featuring deep purple backgrounds, neon pink and cyan accents, and ambient glow effects. This theme is set as the default.
+**Shubham's Theme** is a cyberpunk-inspired aesthetic featuring deep purple backgrounds, neon pink and cyan accents, and ambient glow effects. This theme is set as the default (bec it's mainly for Shubham).
 
 ## Technical Details
 
-The app is a single HTML file with no external dependencies. It works offline once loaded and stores all progress in your browser's localStorage. Data persists across sessions but is tied to your browser—clearing browser data will reset your progress.
+The app works offline once loaded and stores all progress in your browser's localStorage. Data persists across sessions but is tied to your browser—clearing browser data will reset your progress.
 
 You can export your progress as a JSON file from Settings at any time. This backup includes all learned words, performance data, and settings. Import this file on another device or after clearing your browser to restore your progress.
 
@@ -86,9 +86,4 @@ All data stays on your device. The app makes no network requests after initial l
 ---
 
 Built for focused GRE preparation. No accounts, no subscriptions, no distractions—just you and the words.
-
-## Contributing
-
-This is a single-file application, so contributing is straightforward. Fork the repository, edit `index.html`, and submit a pull request. The entire app — HTML, CSS, JavaScript, and all 5,867 vocabulary entries — lives in that one file.
-
 
