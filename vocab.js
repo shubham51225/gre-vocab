@@ -1,9 +1,3 @@
-// GRE Vocabulary - Complete List with Economics Examples
-// Total: 2229 words
-// All words from Barron's, Manhattan Prep, Princeton Review, and supplementary sources
-// Each word has a unique, carefully crafted economics/finance example
-// Verified: No duplicates, no generic examples, all words have definitions
-
 const VOCAB = [
   {
     "word": "abase",
